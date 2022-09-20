@@ -64,13 +64,6 @@ def webhook(pid, name, prezzo, image, url, brand):
     web = DiscordWebhook(url='https://discord.com/api/webhooks/1019353487672352768/EDBCqWW5WJSxcnbVYCXNRSMs3xh9NNUWuQ8LnTjuefBkXEehsaCVnXBBOX5ndIue5yxh') #connects with discord
     embed = DiscordEmbed(title = f"New product - {brand}", description = url)
 
-    webp_buffer = io.BytesIO(urllib.request.urlopen("https://images.asos-media.com/products/new-balance-574-sneakers-in-bianco-blu-navy-e-rosso/201068959-1-whitenavy").read())
-
-    im = Image.open(webp_buffer).convert("RGB")
-    jpeg_buffer = io.BytesIO()
-    im.save(jpeg_buffer, "jpeg")
-    webhook.add_file(file=jpeg_buffer.read(), filename=f'{pid}.jpg')
-   
     embed.add_embed_field(name = "Name", value = name, inline = False)
     embed.add_embed_field(name = "PID", value = pid, inline = False)
     embed.add_embed_field(name = "Price", value = str(prezzo), inline = False)
